@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerInputs : MonoBehaviour
 {
 	public PlayerController controller;
+	[SerializeField] private Animation distortion;
 
 	public float runSpeed = 40f;
 
@@ -30,6 +31,10 @@ public class PlayerInputs : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.T))
         {
+			if (!isTimeStopping)
+            {
+				distortion.Play();
+			}
 			isTimeStopping = true;
 		}
 		TimeStop();
