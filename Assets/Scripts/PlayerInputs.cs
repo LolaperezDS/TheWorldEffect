@@ -6,6 +6,7 @@ public class PlayerInputs : MonoBehaviour
 {
 	public PlayerController controller;
 	[SerializeField] private Animation distortion;
+	[SerializeField] private AudioSource sound;
 
 	public float runSpeed = 40f;
 
@@ -18,8 +19,12 @@ public class PlayerInputs : MonoBehaviour
 	[SerializeField] private float temp_time = 2f;
 	private float tempOfAnim = 2f;
 
-	// Update is called once per frame
-	void Update()
+    private void Start()
+    {
+		sound = GetComponent<AudioSource>();
+	}
+
+    void Update()
 	{
 
 		horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
@@ -33,6 +38,7 @@ public class PlayerInputs : MonoBehaviour
         {
 			if (!isTimeStopping)
             {
+				sound.Play();
 				distortion.Play();
 			}
 			isTimeStopping = true;
