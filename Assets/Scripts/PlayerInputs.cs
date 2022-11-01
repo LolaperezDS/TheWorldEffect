@@ -8,6 +8,8 @@ public class PlayerInputs : MonoBehaviour
 	[SerializeField] private Animation distortion;
 	[SerializeField] private AudioSource sound;
 
+	[SerializeField] private GameObject projectilePrefab;
+
 	public float runSpeed = 40f;
 
 	float horizontalMove = 0f;
@@ -44,6 +46,11 @@ public class PlayerInputs : MonoBehaviour
 			isTimeStopping = true;
 		}
 		TimeStop();
+
+		if (Input.GetKeyDown(KeyCode.F) && !isTimeStopping && !timeStopped)
+        {
+			Fire();
+        }
 	}
 
 	void FixedUpdate()
@@ -81,4 +88,16 @@ public class PlayerInputs : MonoBehaviour
 		}
 		TimeCustom.SetNewMultiplayerOnTime(Mathf.Lerp(0, 1, temp_time / tempOfAnim));
 	}
+
+	private void Fire()
+    {
+		Vector3 screenparams = new Vector3(1920, 1080, 0);
+		GameObject temp_projectile;
+		for (int i = 0; i < 10; i++)
+        {
+			Vector3 randomOtkl = new Vector3(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f), 0);
+			temp_projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+			temp_projectile.GetComponent<projectileScript>().SetUp(((Input.mousePosition - screenparams / 2).normalized + randomOtkl), 10);
+		}
+    }
 }

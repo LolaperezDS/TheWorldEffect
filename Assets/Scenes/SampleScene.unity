@@ -5213,7 +5213,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 593149188}
   distortion: {fileID: 744635854}
-  sound: {fileID: 0}
+  sound: {fileID: 593149190}
+  projectilePrefab: {fileID: 152911667210345688, guid: 397521328ef24594881e22fcc1662001, type: 3}
   runSpeed: 40
   isTimeStopping: 0
   timeStopped: 0
